@@ -1,0 +1,46 @@
+import art
+
+
+alphabet = [
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+]
+
+print(art.logo)
+end_of_game=False
+
+while not end_of_game:
+    direction = input(
+        "Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+
+
+    def caesar(start_text, shift_amount, cipher_direction):
+        cipher_text = ""
+        shift_amount%=26
+        for i in range(len(start_text)):
+            if cipher_direction == "decode":
+                if start_text[i] in alphabet:
+                    cipher_text += alphabet[alphabet.index(start_text[i]) - shift_amount]
+                else:
+                    cipher_text += start_text[i]
+
+            elif cipher_direction == "encode":
+                if start_text[i] in alphabet:
+                    if alphabet.index(start_text[i]) + shift_amount < 25:
+                        cipher_text += alphabet[alphabet.index(start_text[i]) + shift_amount]
+                    else:
+                        cipher_text += alphabet[alphabet.index(start_text[i]) + shift_amount - 26]
+                else:
+                    cipher_text += start_text[i]
+            else:
+                print("You have entered an invalid input")
+        print(f"The {cipher_direction}d text is {cipher_text}")
+
+    caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
+
+    again=input("Do you want to go again (yes/no): ").lower()
+    if(again=="no"):
+        print("Hope you enjoyed the game!")
+        end_of_game=True
