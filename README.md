@@ -1,2 +1,1 @@
-# Python100day
-Python course Udemy-100 day challenge
+Mini Projects in Python, to understand basics more!
